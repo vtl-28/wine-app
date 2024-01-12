@@ -18,10 +18,7 @@ app.use(
   })
 ); 
 
-// app.use("/api/v1/books", book_router)
-app.get('/', function (req, res) {
-  res.send(`Hello World`)
-})
+app.use("/api/v1/books", book_router)
 
 app.listen(
     PORT,
