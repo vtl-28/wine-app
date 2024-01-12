@@ -4,7 +4,7 @@ const cors = require("cors");
 const connectDB = require("./config/db");
 const book_router = require('./routes/book_route')
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3001;
 
 const app = express();
 dotenv.config();
@@ -18,7 +18,10 @@ app.use(
   })
 ); 
 
-app.use("/api/v1/books", book_router)
+// app.use("/api/v1/books", book_router)
+app.get('/', function (req, res) {
+  res.send(`Hello World`)
+})
 
 app.listen(
     PORT,
