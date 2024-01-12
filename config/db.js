@@ -1,15 +1,17 @@
-const { Pool } = require('pg');
+const mongoose = require("mongoose");
 
 async function connectDB() {
-    try {
-        const conn = new Pool({
-            connectionString: process.env.POSTGRES_URL + "?sslmode=require",
-        })
-  
-      console.log("Connect to PostgreSQL successfully!");
-    } catch (error) {
-      console.log(`Error: ${error.message}`);
-      process.exit();
-    }
+  try {
+    const conn = await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+  } catch (error) {
+    console.log(`Error: ${error.message}`);
+    process.exit();
   }
-  module.exports = connectDB;
+}
+
+module.exports = connectDB;
