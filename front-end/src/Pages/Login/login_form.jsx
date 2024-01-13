@@ -6,8 +6,11 @@ import {
     FormLabel,
     Input,
   } from "@chakra-ui/react";
-  import { login } from '../../Utils/user'
   import { useNavigate } from "react-router-dom";
+  import { Spinner } from "react-bootstrap";
+  import { login } from '../../Utils/user';
+  import SuccessToast from '../../Components/Toasts/SuccessToast'
+  import ErrorToast from '../../Components/Toasts/ErrorToast'
 
   const LoginForm = () => {
     const navigate = useNavigate();
@@ -45,6 +48,13 @@ import {
 
     return (
         <Box className='px-4'>
+              {showErrorToast && (
+              <ErrorToast
+                message={errorMessage}
+                showErrorToast={showErrorToast}
+                toggleErrorToast={toggleErrorToast}
+              />
+            )}
             <FormControl className="mb-3">
                 <FormLabel>Email address</FormLabel>
                 <Input
@@ -65,7 +75,19 @@ import {
             </FormControl>
             <Box className='flex justify-between'>
                 <Button >Get login credentials</Button>
-                <Button className='basis-1/2' onClick={login_user}>Log in</Button>
+                <Button className='basis-1/2' onClick={login_user}>
+                {isLoading && (
+                    <Spinner
+                      as="span"
+                      animation="border"
+                      size="sm"
+                      role="status"
+                      aria-hidden="true"
+                      variant="secondary"
+                    />
+                  )}
+                    Log in
+                </Button>
             </Box>
         </Box>
     )

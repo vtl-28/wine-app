@@ -11,9 +11,9 @@ const app = express();
 dotenv.config();
 connectDB()
 app.use(cors({ 
-  origin: ["https://wine-app-pi.vercel.app"], 
-  credentials: true,
-  methods: ["POST", "GET", "PUT", "DELETE"] }));
+  origin: true, 
+  credentials: true
+ }));
 
 app.use(express.json());
 app.use(
@@ -22,9 +22,9 @@ app.use(
   })
 ); 
 
-app.get("/", (req, res) => {
-  res.send("Hello from the backend");
-});
+// app.get("/", (req, res) => {
+//   res.send("Hello from the backend");
+// });
 app.use("/api/wine", wine_router);
 app.use("/api/user", user_router);
 
