@@ -9,7 +9,6 @@ import {
   import { useNavigate } from "react-router-dom";
   import { Spinner } from "react-bootstrap";
   import { login } from '../../Utils/user';
-  import SuccessToast from '../../Components/Toasts/SuccessToast'
   import ErrorToast from '../../Components/Toasts/ErrorToast'
 
   const LoginForm = () => {
@@ -42,7 +41,7 @@ import {
       toggleErrorToast();
     } else {
       setIsLoading(false);
-      navigate("/dashboard");
+      navigate("/landing_page", { state: response });
     }
   }
 

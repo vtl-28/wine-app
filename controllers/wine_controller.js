@@ -24,7 +24,7 @@ const add_wine = async (req, res) => {
     try {
       const wine = await (
         await Wine.create(new_wine)
-      ).populate("stored_by", "_id email");
+      ).populate("stored_by", "_id name email");
       res.status(201).send(wine);
     } catch (error) {
       res.status(404).send(error);
@@ -67,9 +67,10 @@ const add_wine = async (req, res) => {
   };
 
   const get_wines = (req, res) => {
+    debugger
     Wine.find({})
       .sort({ createdAt: -1 })
-      .populate("stored_by", "_id email")
+      .populate("stored_by", "_id name email")
       .then((wines) => {
         res.status(201).send(wines);
       })
