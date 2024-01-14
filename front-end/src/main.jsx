@@ -9,7 +9,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import App from './App.jsx'
 import ErrorPage from './error_page.jsx'
 import LoginPage from './Pages/Login/index.jsx'
-import LandingPage from './Pages/Landing Page/index.jsx'
+import LandingPage from './Pages/LandingPage/index.jsx'
 import UpdateWine from './Pages/Update Wine/index.jsx';
 import './index.css'
 
