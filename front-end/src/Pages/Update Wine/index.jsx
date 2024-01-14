@@ -1,78 +1,78 @@
-import React, {  useState } from "react";
 import {
-  Flex,
-  Text,
-  Heading,
-  Box,
-  Button,
-  useDisclosure,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalCloseButton,
-  ModalBody,
-  FormControl,
-  FormLabel,
-  Input,
-  Select
-} from "@chakra-ui/react";
-import {  add_wine } from './Utils/wine'
-import ErrorToast from "./Components/Toasts/ErrorToast"
-import SuccessToast from "./Components/Toasts/SuccessToast";
+    Flex,
+    Box,
+    Button,
+    FormControl,
+    FormLabel,
+    Input,
+    Select
+  } from "@chakra-ui/react";
+import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import SuccessToast from "../../Components/Toasts/SuccessToast";
+import ErrorToast from "../../Components/Toasts/ErrorToast";
+import { update_wine } from "../../Utils/wine";
 
-const AddWine = ({ onClose, isOpen }) => {
-  const [name, setName] = useState("");
-  const [year, setYear] = useState("");
-  const [type, setType] = useState("");
-  const [varietal, setVarietal] = useState("");
-  const [rating, setRating] = useState("");
-  const [showSuccessToast, setShowSuccessToast] = useState(false);
+const UpdateWine = () => {
+    const navigate = useNavigate()
+    const state = useLocation()
+    const { _id, name: wine_name, year: wine_year, 
+        type: wine_type, varietal: wine_varietal, rating: wine_rating } = state.state
+        console.log(_id, wine_name, wine_year, wine_type, wine_varietal, wine_rating)
+        console.log(state)
+    const [name, setName] = useState("");
+    const [year, setYear] = useState("");
+    const [type, setType] = useState("");
+    const [varietal, setVarietal] = useState("");
+    const [rating, setRating] = useState("");
+
+    const [showSuccessToast, setShowSuccessToast] = useState(false);
   const [showErrorToast, setShowErrorToast] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState([]);
   const [dataIsLoading, setDataIsLoading] = useState(false);
-  const [startDate, setStartDate] = useState(new Date());
+
   const toggleSuccessToast = () => setShowSuccessToast(!showSuccessToast);
   const toggleErrorToast = () => setShowErrorToast(!showErrorToast);
 
-  const add = async (e) => {
+  const edit = async(e) => {
     e.preventDefault();
     setDataIsLoading(true);
 
     const data = {
-      name,
-      year,
-      type,
-      varietal,
-      rating
-    };
+        name,
+        year,
+        type,
+        varietal,
+        rating
+      };
 
-    let response = await add_wine(data);
-    const response_validation = typeof response === "object" ? "yes" : "no";
-
-    if (response_validation === "no") {
-      setDataIsLoading(false);
-      setErrorMessage(response);
-      toggleErrorToast();
-    } else {
-      setDataIsLoading(false);
-      setSuccessMessage(`Successfully added ${name} to the collection`);
-      setName("");
-      setYear("");
-      setType("");
-      setVarietal("");
-      setRating("");
-      toggleSuccessToast();
-    }
-  };
-
+      let response = await update_wine(_id, data);
+      const response_validation = typeof response === "object" ? "yes" : "no";
+  
+      if (response_validation === "no") {
+        setDataIsLoading(false);
+        setErrorMessage(response);
+        toggleErrorToast();
+      } else {
+        setDataIsLoading(false);
+        setSuccessMessage("Successfully updated");
+        setName("");
+        setYear("");
+        setType("");
+        setVarietal("");
+        setRating("");
+        toggleSuccessToast();
+      }
+  }
     return (
-        <Modal isOpen={isOpen} onClose={onClose}>
-      <ModalOverlay />
-      <ModalContent>
-        <ModalCloseButton />
-        <ModalBody>
-        {showSuccessToast && (
+        <div className="w-full h-screen">
+            <div className='grid grid-cols-12 grid-rows-6 h-full pt-10'>
+                <div className='col-start-5 col-span-4'>
+                    <div className='flex flex-col justify-between'>
+                        <h3 className='text-4xl text-center'>Edit Wine</h3>
+                    </div>
+                    {showSuccessToast && (
             <SuccessToast
               placement={"middle-center"}
               message={successMessage}
@@ -88,12 +88,12 @@ const AddWine = ({ onClose, isOpen }) => {
               toggleErrorToast={toggleErrorToast}
             />
           )}
-          <Flex direction="column" className="py-10">
-            <Box>
+                    <Flex direction="column">
               <FormControl className="mb-3">
                 <FormLabel>Name</FormLabel>
                 <Input
                   type="text"
+                  placeholder={wine_name}
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   name="name"
@@ -103,6 +103,7 @@ const AddWine = ({ onClose, isOpen }) => {
                 <FormLabel>Year</FormLabel>
                 <Input
                    type="text"
+                   placeholder={wine_year}
                    value={year}
                    onChange={(e) => setYear(e.target.value)}
                    name="year"
@@ -132,25 +133,34 @@ const AddWine = ({ onClose, isOpen }) => {
                 <FormLabel>Rating</FormLabel>
                 <Input
                    type="text"
+                   placeholder={wine_rating}
                    value={rating}
                    onChange={(e) => setRating(e.target.value)}
                    name="rating"
                 />
               </FormControl>
               <FormControl>
+                <Box className='flex justify-between'>
                 <Button
-                  className="w-full"
-                  onClick={add}
+                className='basis-1/3'
+                  onClick={() => navigate('/landing_page', {state})}
                 >
-                    Add wine
+                    Back
                 </Button>
+                    <Button
+                    className='basis-1/3'
+                    onClick={edit}
+                    >
+                        Edit wine
+                    </Button>
+                </Box>
               </FormControl>
-            </Box>
-
           </Flex>
-        </ModalBody>
-      </ModalContent>
-    </Modal>
+                    
+                </div>
+            </div>
+        </div>
     )
+
 }
-export default AddWine
+export default UpdateWine

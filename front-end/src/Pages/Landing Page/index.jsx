@@ -1,10 +1,10 @@
+import { useState } from "react";
 import {
   
     Button,
     Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
@@ -14,11 +14,17 @@ import {
   } from "@chakra-ui/react";
 
   import { useLocation } from "react-router-dom";
-  import AddWine from "../../add_wine_model";
+  import AddWine from "../../add_wine_modal";
   import { useFetchWines } from "../../Hooks/wine";
   import TableRow from '../../table_row'
 
 const LandingPage = () => {
+  const {
+    isOpen: isOpenAdd,
+    onOpen: onOpenAdd,
+    onClose: onCloseAdd,
+  } = useDisclosure();
+
   const { state } = useLocation();
 
   const { data, error, status } = useFetchWines();
@@ -29,10 +35,7 @@ const LandingPage = () => {
   if (status === "error") {
     return <div>{error.message}</div>;
   }
-  console.log(data)
-    
-
-    const { isOpen, onOpen, onClose } = useDisclosure();
+ 
     return (
         <div className="w-full h-screen border-2 border-red-400">
             <div className='grid grid-cols-12 grid-rows-6 h-full border-2 border-blue-400'>
@@ -42,9 +45,9 @@ const LandingPage = () => {
                         <p>Now that you're in, let's start adding some wines to your collection</p>
                     </div>
                     <div className="mb-4">
-                        <Button onClick={onOpen}>Add wine</Button>
+                        <Button onClick={onOpenAdd}>Add wine</Button>
                     </div>
-                    <AddWine isOpen={isOpen} onClose={onClose}/>
+                    <AddWine isOpen={isOpenAdd} onClose={onCloseAdd}/>
                     <TableContainer>
   <Table variant='striped' colorScheme='teal'>
     <TableCaption>Wine database</TableCaption>
@@ -60,25 +63,13 @@ const LandingPage = () => {
     </Thead>
     <Tbody>
       {
-        data ? data.map((wine) => {
-          return (
-            <Tr>
-            <Td>{wine.name}</Td>
-            <Td>{wine.year}</Td>
-            <Td>{wine.type}</Td>
-            <Td>{wine.varietal}</Td>
-            <Td>{wine.rating}</Td>
-            <Td>
-            <Button>Edit</Button>
-            </Td>
-          </Tr>
-          )
-        }) : ""
+        data ? <TableRow wines={data}/>
+         : ""
       }
-  
     </Tbody>
   </Table>
 </TableContainer>
+      
 
                 </div>
 
