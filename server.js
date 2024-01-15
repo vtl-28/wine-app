@@ -11,7 +11,8 @@ const app = express();
 dotenv.config();
 connectDB()
 app.use(cors({ 
-  origin: true, 
+  origin: ["https://wine-app-pi.vercel.app"], 
+  methods: ["GET", "POST", "PUT"],
   credentials: true
  }));
 
