@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import {
   Flex,
   Text,
@@ -16,7 +16,7 @@ import {
   Input,
   Select
 } from "@chakra-ui/react";
-import {  add_wine } from './Utils/wine'
+import { add_wine } from "./Utils/wine";
 import ErrorToast from "./Components/Toasts/ErrorToast"
 import SuccessToast from "./Components/Toasts/SuccessToast";
 
@@ -30,8 +30,7 @@ const AddWine = ({ onClose, isOpen }) => {
   const [showErrorToast, setShowErrorToast] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState([]);
-  const [dataIsLoading, setDataIsLoading] = useState(false);
-  const [startDate, setStartDate] = useState(new Date());
+  const [dataIsLoading, setDataIsLoading] = useState(false)
   const toggleSuccessToast = () => setShowSuccessToast(!showSuccessToast);
   const toggleErrorToast = () => setShowErrorToast(!showErrorToast);
 
@@ -66,13 +65,13 @@ const AddWine = ({ onClose, isOpen }) => {
     }
   };
 
-    return (
-        <Modal isOpen={isOpen} onClose={onClose}>
+  return (
+    <Modal isOpen={isOpen} onClose={onClose} >
       <ModalOverlay />
-      <ModalContent>
-        <ModalCloseButton />
+      <ModalContent bg='#4A081A' opacity='revert'>
+        <ModalCloseButton color='#fff' />
         <ModalBody>
-        {showSuccessToast && (
+          {showSuccessToast && (
             <SuccessToast
               placement={"middle-center"}
               message={successMessage}
@@ -91,34 +90,50 @@ const AddWine = ({ onClose, isOpen }) => {
           <Flex direction="column" className="py-10">
             <Box>
               <FormControl className="mb-3">
-                <FormLabel>Name</FormLabel>
+                <FormLabel color='#fff'>Name</FormLabel>
                 <Input
                   type="text"
+                  bg='#fff'
+                  borderRightRadius="0"
+                  borderLeftRadius="0"
+                  _placeholder={{ color: '#000000' }}
+                  fontWeight="semibold"
+                  focusBorderColor='red.300'
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   name="name"
                 />
               </FormControl>
               <FormControl className="mb-3">
-                <FormLabel>Year</FormLabel>
+                <FormLabel color='#fff'>Year</FormLabel>
                 <Input
-                   type="text"
-                   value={year}
-                   onChange={(e) => setYear(e.target.value)}
-                   name="year"
+                  type="text"
+                  bg='#fff'
+                  borderRightRadius="0"
+                  borderLeftRadius="0"
+                  _placeholder={{ color: '#000000' }}
+                  fontWeight="semibold"
+                  focusBorderColor='red.300'
+                  value={year}
+                  onChange={(e) => setYear(e.target.value)}
+                  name="year"
                 />
               </FormControl>
               <FormControl className="mb-3">
-                <FormLabel>Type</FormLabel>
-                <Select value={type} onChange={(e) => setType(e.target.value)}>
+                <FormLabel color='#fff'>Type</FormLabel>
+                <Select bg='#fff'
+                  borderRightRadius="0"
+                  borderLeftRadius="0" focusBorderColor='red.300' value={type} onChange={(e) => setType(e.target.value)}>
                   <option value='Red'>Red</option>
                   <option value='White'>White</option>
                   <option value='Rose'>Rose</option>
-              </Select>
+                </Select>
               </FormControl>
               <FormControl className="mb-3">
-                <FormLabel>Varietal</FormLabel>
-                <Select value={varietal} onChange={(e) => setVarietal(e.target.value)}>
+                <FormLabel color='#fff'>Varietal</FormLabel>
+                <Select bg='#fff'
+                  borderRightRadius="0"
+                  borderLeftRadius="0" focusBorderColor='red.300' value={varietal} onChange={(e) => setVarietal(e.target.value)}>
                   <option value='Cabernet Sauvignon'>Cabernet Sauvignon</option>
                   <option value='Merlot'>Merlot</option>
                   <option value='Shiraz'>Shiraz</option>
@@ -126,23 +141,32 @@ const AddWine = ({ onClose, isOpen }) => {
                   <option value='Verdelho'>Verdelho</option>
                   <option value='Chardonnay'>Chardonnay</option>
                   <option value='Durif'>Durif</option>
-              </Select>
+                </Select>
               </FormControl>
               <FormControl className="mb-4">
-                <FormLabel>Rating</FormLabel>
+                <FormLabel color='#fff'>Rating</FormLabel>
                 <Input
-                   type="text"
-                   value={rating}
-                   onChange={(e) => setRating(e.target.value)}
-                   name="rating"
+                  type="text"
+                  bg='#fff'
+                  borderRightRadius="0"
+                  borderLeftRadius="0"
+                  _placeholder={{ color: '#000000' }}
+                  fontWeight="semibold"
+                  focusBorderColor='red.300'
+                  value={rating}
+                  onChange={(e) => setRating(e.target.value)}
+                  name="rating"
                 />
               </FormControl>
               <FormControl>
                 <Button
                   className="w-full"
+                  bg='#fff'
+                  borderRightRadius="0"
+                  borderLeftRadius="0"
                   onClick={add}
                 >
-                    Add wine
+                  ADD WINE
                 </Button>
               </FormControl>
             </Box>
@@ -151,6 +175,6 @@ const AddWine = ({ onClose, isOpen }) => {
         </ModalBody>
       </ModalContent>
     </Modal>
-    )
+  )
 }
 export default AddWine

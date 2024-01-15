@@ -21,10 +21,6 @@ app.use(
     extended: true,
   })
 ); 
-
-// app.get("/", (req, res) => {
-//   res.send("Hello from the backend");
-// });
 app.use("/api/wine", wine_router);
 app.use("/api/user", user_router);
 

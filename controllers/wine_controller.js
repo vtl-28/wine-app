@@ -3,7 +3,6 @@ const Wine = require("../models/wine")
 const add_wine = async (req, res) => {
     const { name, year, type, varietal, rating, consumed, date_consumed } =
       req.body;
-      console.log(req.body)
   
     if (!name || !year || !type || !varietal) {
       res.status(400).send("Please enter all the fields");
@@ -20,7 +19,7 @@ const add_wine = async (req, res) => {
       consumed,
       date_consumed,
     };
-    console.log(new_wine)
+
     try {
       const wine = await (
         await Wine.create(new_wine)
@@ -38,7 +37,7 @@ const add_wine = async (req, res) => {
       req.body;
   
     if (!name && !year && !type && !varietal) {
-      res.status(404).send("Please fill in the form to update talk details");
+      res.status(404).send("Please fill in the form to update wine details");
       return;
     }
   
@@ -67,7 +66,6 @@ const add_wine = async (req, res) => {
   };
 
   const get_wines = (req, res) => {
-    debugger
     Wine.find({})
       .sort({ createdAt: -1 })
       .populate("stored_by", "_id name email")
@@ -90,4 +88,16 @@ const add_wine = async (req, res) => {
     }
   };
 
-  module.exports = { add_wine, update_wine, get_wines, delete_wine }
+  const get_wine = async (req, res) => {
+    const wine_id = req.params.id;
+  
+    try {
+      const wine = await Wine.findById({ _id: wine_id })
+      res.status(200).send(wine);
+    } catch (error) {
+      res.status(400).send(error);
+    }
+  };
+  
+
+  module.exports = { add_wine, update_wine, get_wines, delete_wine, get_wine}

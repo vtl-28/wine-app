@@ -22,7 +22,6 @@ export function fetch_wines() {
         },
       })
       .then((response) => {
-        
         return response.data;
       })
       .catch((error) => {
@@ -39,7 +38,6 @@ export function fetch_wines() {
         },
       })
       .then((response) => {
-        console.log(response)
         return response.data;
       })
       .catch((error) => {
@@ -56,7 +54,6 @@ export function fetch_wines() {
         },
       })
       .then((response) => {
-        console.log(response)
         return response.data;
       })
       .catch((error) => {

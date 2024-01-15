@@ -41,7 +41,6 @@ const register_user = async (req, res) => {
       if (user) {
         const token = generate_token(user._id);
         user.token = token;
-        console.log(user)
         res.status(201).send(user);
       } else {
         res.status(400).send("Could not register user");

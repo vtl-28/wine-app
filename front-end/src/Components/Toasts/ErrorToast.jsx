@@ -17,11 +17,11 @@ const ErrorToast = ({
         delay={3000}
         autohide
       >
-        <ToastHeader className="bg-red-600 border-b-1 border-b-white">
+        <ToastHeader className="bg-red-600">
           <FaInfoCircle className="text-white text-base" />
-          <small className="text-white ml-3 text-md">Error occurred!</small>
+          <small className="text-white mx-28 text-md text-center">Error occurred!</small>
         </ToastHeader>
-        <Toast.Body className="text-white text-base">{message}</Toast.Body>
+        <Toast.Body className="text-white text-base  text-center">{message}</Toast.Body>
       </Toast>
     </ToastContainer>
   );
