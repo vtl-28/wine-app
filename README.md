@@ -1,4 +1,4 @@
-# Talk Host
+# My Wines
 My Wines is a wine web app that allows users to discover and contribute to a growing database of wines.
 
 # Table of contents
