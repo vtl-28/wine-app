@@ -1,3 +1,10 @@
 h3 {
     font-family: 'Dancing Script', cursive;
 }
+
+.bg_image_1 {
+    background-image: url('./assets/wine_pic_1.jpg');
+}
+.bg_image_2 {
+    background-image: url('./assets/wine_pic_2.jpg');
+}

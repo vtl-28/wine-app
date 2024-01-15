@@ -40,7 +40,7 @@ const LandingPage = () => {
     <div className="w-full h-screen bg-wine_bg">
       <div className='grid grid-cols-12 grid-rows-12 h-full py-4'>
         <div className="bg-cover bg-center h-full row-span-12 col-start-2
-                 col-end-12 col-span-8  px-12" style={{ backgroundImage: "url('/src/assets/wine_pic_1.jpg')" }}>
+                 col-end-12 col-span-8  px-12 bg_image_1" >
           <div className="flex flex-col items-center h-28 justify-around">
             <h3 className="text-4xl text-white">Welcome, {state.name}</h3>
             <p className="text-white font-serif">Now that you're in, let's start adding some wines to your collection</p>

@@ -4,7 +4,7 @@ const add_wine = async (req, res) => {
     const { name, year, type, varietal, rating, consumed, date_consumed } =
       req.body;
   
-    if (!name || !year || !type || !varietal) {
+    if (!name || !year || !type || !varietal || !rating) {
       res.status(400).send("Please enter all the fields");
       return;
     }
@@ -36,7 +36,7 @@ const add_wine = async (req, res) => {
     const { name, year, type, varietal, rating } =
       req.body;
   
-    if (!name && !year && !type && !varietal) {
+    if (!name && !year && !type && !varietal && !rating) {
       res.status(404).send("Please fill in the form to update wine details");
       return;
     }

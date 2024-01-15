@@ -69,7 +69,7 @@ const UpdateWine = () => {
     <div className="w-full h-screen bg-wine_bg">
       <div className='grid grid-cols-12 grid-rows-6 h-full  py-4'>
         <div className='row-span-6 col-start-2
-                 col-end-12 col-span-8 px-28 py-12'  style={{ backgroundImage: "url('/src/assets/wine_pic_1.jpg')" }}>
+                 col-end-12 col-span-8 px-28 py-12 bg_image_1'>
           <div className="px-48 bg-wine_bg opacity-85 py-6">
 
             {showSuccessToast && (
