@@ -172,7 +172,7 @@ const UpdateWine = () => {
                     bg='#fff'
                     borderRightRadius="0"
                     borderLeftRadius="0"
-                    onClick={() => navigate('/landing_page', { state })}
+                    onClick={() => navigate('/landing_page', { state: state })}
                   >
                     BACK
                   </Button>
