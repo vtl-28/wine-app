@@ -12,16 +12,16 @@ My Wines is a wine web app that allows users to discover and contribute to a gro
 - [License](#license)
 
 ## About
-My Wines is a technical take home task that should allow users to input their favorite wines into designated fields and compile these into a list. Users should also have the capability to edit and delete entries, as well as update their list as desired
+My Wines is a technical take-home task that should allow users to input their favorite wines into designated fields and compile these into a list. Users should also have the capability to edit and delete entries, as well as update their list as desired
 
 ## Demo
 A live version of this project can be found at https://wine-app-pi.vercel.app/
 
 ## Recorded Visual
-
+https://github.com/vtl-28/wine-app/assets/73833164/a5d430a0-11ab-48af-87f2-60cd9fcb0e4c
 
 ## Getting Started
-- To run this application on your machine, one must have git and nodejs installed on their machine
+- To run this application on your machine, one must have git and NodeJS installed on their machine
 - To get a copy of this project on your local machine, use the git clone command on the following link or repository: https://github.com/vtl-28/wine-app.git in the directory of your choice on your machine
 
 ## Installation
@@ -33,7 +33,7 @@ A live version of this project can be found at https://wine-app-pi.vercel.app/
 - Users can edit wine records
 
 ## Tech stack
-This project was built using Mongo, Express, React, Nodejs and Tailwindcss
+This project was built using Mongo, Express, React, Nodejs, and Tailwindcss
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
